@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DailyReminder App
 
-## Getting Started
+## Overview
 
-First, run the development server:
+DailyReminder is a versatile productivity application designed to help you stay organized and focused on your daily tasks and goals. It includes a mobile app, a terminal app, a Chrome extension, and a web interface for tracking your progress.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Terminal App:**
+  - Access and manage your tasks from the command line.
+  - Use simple commands to add, delete, or update tasks.
+  - Seamless integration with your daily workflow.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Chrome Extension:**
+  - Receive reminders and updates directly in your browser.
+  - Quick access to your tasks without leaving your browsing session.
+  - Customizable settings for a personalized experience.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Web Interface:**
+  - Track your daily progress and completed tasks.
+  - View statistics and insights to understand your productivity trends.
+  - User-friendly dashboard for a comprehensive overview.
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
+### Terminal App
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Clone the repository: `git clone https://github.com/yourusername/DailyReminder.git`
+- Navigate to the terminal app directory: `cd DailyReminder/terminal`
+- Install dependencies: `npm install`
+- Run the terminal app: `npm start`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Chrome Extension
 
-## Deploy on Vercel
+- Download the DailyReminder Chrome extension from the [Chrome Web Store](#).
+- Add the extension to your browser.
+- Configure settings as needed.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Web Interface
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Visit [DailyReminder Web](#) in your browser.
+- Sign in with your account credentials.
+- Explore the dashboard and track your progress.
+
+## Usage
+
+- **Terminal App:**
+  - Use commands like `add`, `delete`, and `update` to manage your tasks.
+  - Example: `node app.js add "Complete project report"`
+  - Stay productive right from your terminal.
+
+- **Chrome Extension:**
+  - Customize reminder settings through the extension icon.
+  - Receive real-time updates while browsing.
+
+- **Web Interface:**
+  - Log in to the web interface to view your dashboard.
+  - Track your completed tasks and analyze your productivity.
+
+## Contributing
+
+We welcome contributions from the community. If you have suggestions, bug reports, or want to contribute code, please follow our [Contribution Guidelines](CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Contact
+
+For support, feedback, or inquiries, contact us at <support@dailyreminderapp.com>.
+
+---
+
+Feel free to modify and expand upon this template to suit your application's specific needs.
