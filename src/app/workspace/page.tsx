@@ -1,3 +1,4 @@
+import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { db } from "~/server/database";
 
@@ -6,6 +7,7 @@ const WorkspaceHomePage = async () => {
   return (
     <div>
       <p>This is workspace homepage</p>
+      <UserButton afterSignOutUrl="/" />
       {workspaces &&
         workspaces.map((workspace) => (
           <div
