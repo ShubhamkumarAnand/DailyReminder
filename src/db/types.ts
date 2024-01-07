@@ -26,10 +26,13 @@ export type Project = {
 export type Quotes = {
     id: Generated<string>;
     quote: string;
+    description: string;
+    createdAt: Generated<Timestamp>;
 };
 export type Workspace = {
     id: Generated<string>;
     name: string;
+    ownerId: string;
     createdAt: Generated<Timestamp>;
     updatedAt: Timestamp;
 };

@@ -14,6 +14,7 @@ model Workspace {
   id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name      String    @unique
   projects  Project[]
+  ownerId   String
   createdAt DateTime  @default(dbgenerated("now()")) @db.Timestamp(6)
   updatedAt DateTime  @updatedAt
 }
@@ -40,14 +41,16 @@ model Progress {
   projectId  String?  @db.Uuid
 }
 
+model Quotes {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  quote       String
+  description String
+  createdAt   DateTime @default(dbgenerated("now()")) @db.Timestamp()
+}
+
 enum Tag {
   PLANNED
   INPROGRESS
   DONE
   ARCHIVED
-}
-
-model Quotes {
-  id    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  quote String
 }

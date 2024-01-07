@@ -17,5 +17,16 @@
   "tabWidth": 2,
   "trailingComma": "es5",
   "useTabs": false,
-  "vueIndentScriptAndStyle": false
+  "vueIndentScriptAndStyle": false,
+  "importOrder": [
+    "(.*)/__mocks__/(.*)",
+    "<THIRD_PARTY_MODULES>",
+    "^@(calcom|ee)/(.*)$",
+    "^@lib/(.*)$",
+    "^@components/(.*)$",
+    "^@(server|trpc)/(.*)$",
+    "^~/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true
 }
