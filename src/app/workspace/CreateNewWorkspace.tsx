@@ -53,7 +53,11 @@ const CreateNewWorkspacePage = ({ userId }: { userId: string }) => {
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit" disabled={isPending} variant="secondary">
+              <Button
+                type="submit"
+                disabled={isPending}
+                className="bg-orange-400"
+              >
                 Create Workspace
               </Button>
             </DialogFooter>
