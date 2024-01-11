@@ -7,8 +7,8 @@ export async function getWorkspace(userId: string) {
   const workspace = await db
     .selectFrom("Workspace")
     .where("Workspace.ownerId", "=", userId)
-    .selectAll()
-    .orderBy("Workspace.createdAt desc")
+    .select(["id", "name"])
+    .orderBy("createdAt desc")
     .execute();
   return workspace;
 }

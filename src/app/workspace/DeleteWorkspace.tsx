@@ -10,7 +10,9 @@ const DeleteWorkspace = ({
 }) => {
   return (
     <form action={deleteWorkspace.bind(null, userId, workspaceName)}>
-      <Button type="submit">Delete</Button>
+      <Button type="submit" variant="destructive">
+        Delete
+      </Button>
     </form>
   );
 };

@@ -1,5 +1,5 @@
-import { auth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+"use client";
+import { useTransition } from "react";
 import { createNewWorkspace } from "~/app/_action/workspace";
 import { Button } from "~/components/ui/button";
 import {
@@ -14,9 +14,8 @@ import {
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 
-const CreateNewWorkspacePage = () => {
-  const { userId } = auth();
-  if (!userId) redirect("/sign-in");
+const CreateNewWorkspacePage = ({ userId }: { userId: string }) => {
+  const [isPending, setTransition] = useTransition();
 
   return (
     <div className="flex justify-end">
@@ -31,7 +30,14 @@ const CreateNewWorkspacePage = () => {
               Add a new workspace for better management
             </DialogDescription>
           </DialogHeader>
-          <form action={createNewWorkspace.bind(null, userId)}>
+          <form
+            action={createNewWorkspace.bind(null, userId)}
+            // onSubmit={() => {
+            //   setTransition(() => {
+            //     createNewWorkspace.bind(null, userId);
+            //   });
+            // }}
+          >
             <div className="grid gap-4 py-4">
               <div className="grid items-center grid-cols-4 gap-4">
                 <Label htmlFor="name" className="text-right">
@@ -42,11 +48,14 @@ const CreateNewWorkspacePage = () => {
                   id="name"
                   name="name"
                   className="col-span-3"
+                  disabled={isPending}
                 />
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit">Create Workspace</Button>
+              <Button type="submit" disabled={isPending} variant="secondary">
+                Create Workspace
+              </Button>
             </DialogFooter>
           </form>
         </DialogContent>

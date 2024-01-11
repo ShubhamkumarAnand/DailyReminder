@@ -1,12 +1,10 @@
-import { auth } from "@clerk/nextjs";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getWorkspace } from "~/app/_action/workspace";
 import DeleteWorkspace from "~/app/workspace/DeleteWorkspace";
 import UpdateWorkspaceName from "~/app/workspace/UpdateWorkspaceName";
 
-const WorkSpaceList = async () => {
-  const { userId } = await auth();
+const WorkSpaceList = async ({ userId }: { userId: string }) => {
   if (!userId) redirect("/sign-in");
   const workspaces = await getWorkspace(userId);
   return (

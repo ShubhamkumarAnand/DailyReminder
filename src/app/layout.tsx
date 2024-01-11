@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Reminder Application",
   description:
     "So, You forgot what to do today. Well, I'm here to remind you to complete the task!",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
