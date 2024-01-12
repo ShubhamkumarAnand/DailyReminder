@@ -18,7 +18,7 @@ const WorkSpaceList = async ({ userId }: { userId: string }) => {
             >
               <Link
                 prefetch
-                href={`/workspace/${workspace.name}`}
+                href={`/workspace/${workspace.id}`}
                 className="text-3xl text-orange-700"
               >
                 {workspace.name}
