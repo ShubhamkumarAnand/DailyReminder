@@ -4,21 +4,25 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   : ColumnType<T, T | undefined, T>;
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
-import type { Tag, NoteStatus } from "./enums";
+import type { NoteStatus, Tag } from "./enums";
 
-export type goals = {
+export type Goal = {
     id: Generated<string>;
     title: string;
     description: string;
+    userId: string;
     updatedAt: Timestamp;
+    workspaceId: string | null;
 };
-export type Notes = {
+export type Note = {
     id: Generated<string>;
-    tags: string[];
     title: string;
     description: string;
+    tag: string;
     status: Generated<NoteStatus>;
     createdAt: Generated<Timestamp>;
+    workspaceId: string | null;
+    projectId: string | null;
 };
 export type Progress = {
     id: Generated<string>;
@@ -37,11 +41,13 @@ export type Project = {
     updatedAt: Timestamp;
     workspaceId: string | null;
 };
-export type Quotes = {
+export type Quote = {
     id: Generated<string>;
     quote: string;
     description: string;
+    userId: string;
     createdAt: Generated<Timestamp>;
+    workspaceId: string | null;
 };
 export type Workspace = {
     id: Generated<string>;
@@ -51,10 +57,10 @@ export type Workspace = {
     updatedAt: Timestamp;
 };
 export type DB = {
-    goals: goals;
-    Notes: Notes;
+    Goal: Goal;
+    Note: Note;
     Progress: Progress;
     Project: Project;
-    Quotes: Quotes;
+    Quote: Quote;
     Workspace: Workspace;
 };

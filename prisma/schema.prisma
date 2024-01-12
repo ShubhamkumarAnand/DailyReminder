@@ -14,40 +14,50 @@ model Workspace {
   id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name      String    @unique
   projects  Project[]
+  notes     Note[]
+  goals     Goal[]
+  quotes    Quote[]
   ownerId   String
   createdAt DateTime  @default(dbgenerated("now()")) @db.Timestamp(6)
   updatedAt DateTime  @updatedAt
 }
 
+model Note {
+  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title       String
+  description String
+  tag         String
+  status      NoteStatus @default(CAPTURED)
+  createdAt   DateTime   @default(dbgenerated("now()")) @db.Timestamp(6)
+
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  workspaceId String?    @db.Uuid
+  project     Project?   @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  projectId   String?    @db.Uuid
+
+  @@index([workspaceId])
+}
+
+enum NoteStatus {
+  CAPTURED
+  PROCESSED
+  ARCHIVED
+}
+
 model Project {
   id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name        String     @unique
+  name        String
   description String
   progress    Progress[]
+  notes       Note[]
   statusTag   Tag        @default(PLANNED)
   isCompleted Boolean    @default(false)
   createdAt   DateTime   @default(dbgenerated("now()")) @db.Timestamp(6)
   updatedAt   DateTime   @updatedAt
   workspace   Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   workspaceId String?    @db.Uuid
-}
 
-model Progress {
-  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name       String
-  isComplete Boolean  @default(dbgenerated("false"))
-  createdAt  DateTime @default(dbgenerated("now()")) @db.Timestamp(6)
-  project    Project? @relation(fields: [projectId], references: [id])
-  projectId  String?  @db.Uuid
-
-  @@index([projectId, name, isComplete])
-}
-
-model Quotes {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  quote       String
-  description String
-  createdAt   DateTime @default(dbgenerated("now()")) @db.Timestamp(6)
+  @@index([name, updatedAt])
 }
 
 enum Tag {
@@ -57,24 +67,33 @@ enum Tag {
   ARCHIVED
 }
 
-model goals {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+model Progress {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String
+  isComplete Boolean  @default(dbgenerated("false"))
+  createdAt  DateTime @default(dbgenerated("now()")) @db.Timestamp(6)
+  project    Project? @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  projectId  String?  @db.Uuid
+
+  @@index([projectId, name, isComplete])
+}
+
+model Quote {
+  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  quote       String
+  description String
+  userId      String
+  createdAt   DateTime   @default(dbgenerated("now()")) @db.Timestamp(6)
+  Workspace   Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  workspaceId String?    @db.Uuid
+}
+
+model Goal {
+  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title       String
   description String
-  updatedAt   DateTime @updatedAt
-}
-
-model Notes {
-  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tags        String[]
-  title       String     @unique
-  description String
-  status      NoteStatus @default(CAPTURED)
-  createdAt   DateTime   @default(dbgenerated("now()")) @db.Timestamp(6)
-}
-
-enum NoteStatus {
-  CAPTURED
-  PROCESSED
-  ARCHIVED
+  userId      String
+  updatedAt   DateTime   @updatedAt
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  workspaceId String?    @db.Uuid
 }
