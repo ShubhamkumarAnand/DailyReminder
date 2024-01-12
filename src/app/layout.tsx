@@ -28,7 +28,7 @@ export default function RootLayout({
           className={`${inter.className} antialiased bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#FFBE98] to-[#FF8A70]`}
         >
           <div className="p-5 lg:px-24 lg:py-8">
-            <nav className="sticky flex items-center justify-between px-6 py-3 bg-[#eaf0f1] rounded-xl">
+            <nav className="sticky flex items-center justify-between px-6 py-3 bg-[#dad8c0] rounded-xl">
               <Link
                 href="/"
                 prefetch
@@ -39,7 +39,7 @@ export default function RootLayout({
               <div className="flex items-center gap-5">
                 <Link
                   href="/workspace"
-                  className="text-lg font-semibold border-green-300 text-[#dad8c0] hover:border-b-[4px] h-7"
+                  className="text-lg font-semibold border-green-300 text-[#eaf0f1] hover:border-b-[4px] h-7"
                 >
                   workspace
                 </Link>
