@@ -24,14 +24,12 @@ const CreateProject: FC<Readonly<CreateProjectProps>> = ({ workspaceId }) => {
       <div className="flex justify-end">
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="outline">Add a new workspace</Button>
+            <Button variant="outline">Add new project</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
-              <DialogTitle>Add New Workspace</DialogTitle>
-              <DialogDescription>
-                Add a new workspace for better management
-              </DialogDescription>
+              <DialogTitle>Add New Project</DialogTitle>
+              <DialogDescription>Start your new project</DialogDescription>
             </DialogHeader>
             <form action={createNewProject.bind(null, workspaceId)}>
               <div className="grid gap-4 py-4">

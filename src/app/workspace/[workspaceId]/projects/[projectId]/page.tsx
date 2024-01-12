@@ -14,13 +14,11 @@ const Project: FC<Readonly<ProjectProps>> = ({ params }) => {
   return (
     <div className="flex gap-5">
       <Button>
-        <Link href=".">Go Back to Workspace</Link>
+        <Link href="..">Go Back to Workspace</Link>
       </Button>
       <Button>
-        <Link href="..">Trello Board</Link>
+        <Link href=".">Trello Board</Link>
       </Button>
-      <p>{workspaceId}</p>
-      <p>{projectId}</p>
     </div>
   );
 };

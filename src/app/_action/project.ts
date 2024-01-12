@@ -4,15 +4,19 @@ import { revalidatePath } from "next/cache";
 import { db } from "~/server/database";
 
 export const getProjects = async (workspaceId: string) => {
-  const projects = await db
-    .selectFrom("Project")
-    .selectAll()
-    .where("workspaceId", "=", workspaceId)
-    .orderBy("updatedAt desc")
-    .execute();
+  try {
+    const projects = await db
+      .selectFrom("Project")
+      .selectAll()
+      .where("workspaceId", "=", workspaceId)
+      .orderBy("updatedAt desc")
+      .execute();
 
-  console.log(projects);
-  return projects;
+    return projects;
+  } catch (err) {
+    console.error(err);
+    return { error: "Invalid Workspace" };
+  }
 };
 
 export const createNewProject = async (

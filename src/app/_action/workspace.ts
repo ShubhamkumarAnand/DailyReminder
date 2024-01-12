@@ -1,16 +1,22 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { db } from "~/server/database";
 
 export async function getWorkspace(userId: string) {
-  const workspace = await db
-    .selectFrom("Workspace")
-    .where("Workspace.ownerId", "=", userId)
-    .select(["id", "name"])
-    .orderBy("createdAt desc")
-    .execute();
-  return workspace;
+  try {
+    const workspace = await db
+      .selectFrom("Workspace")
+      .where("Workspace.ownerId", "=", userId)
+      .select(["id", "name"])
+      .orderBy("createdAt desc")
+      .execute();
+    return workspace;
+  } catch (err) {
+    console.error(err);
+    return { error: "Invalid credentials" };
+  }
 }
 
 export async function createNewWorkspace(userId: string, formData: FormData) {
@@ -25,11 +31,12 @@ export async function createNewWorkspace(userId: string, formData: FormData) {
         updatedAt: new Date().toISOString(),
       })
       .execute();
+    revalidatePath("/workspace");
+    return { success: "Successfully Created Workspace" };
   } catch (err) {
     console.log(err);
-    throw new Error("Error creating the workspace");
+    return { error: "Error creating the workspace" };
   }
-  return revalidatePath("/workspace");
 }
 
 export async function updateWorkspaceName(
@@ -54,10 +61,11 @@ export async function updateWorkspaceName(
       })
       .execute();
 
-    return revalidatePath("/workspace");
+    revalidatePath("/workspace");
+    return { success: "Workspace name updated" };
   } catch (error) {
     console.log(error);
-    throw new Error("Error updating the name");
+    return { error: "Error updating the name" };
   }
 }
 
@@ -73,9 +81,10 @@ export async function deleteWorkspace(userId: string, name: string) {
       )
       .execute();
 
-    return revalidatePath("/workspace");
+    revalidatePath("/workspace");
+    return { success: "Updated the workspace name" };
   } catch (e) {
     console.log(e);
-    throw new Error("Error Deleting Workspace");
+    return { error: "Error Deleting Workspace" };
   }
 }
