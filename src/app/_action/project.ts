@@ -19,6 +19,26 @@ export const getProjects = async (workspaceId: string) => {
   }
 };
 
+export const getProjectById = async (
+  projectId: string,
+  workspaceId: string
+) => {
+  try {
+    const project = await db
+      .selectFrom("Project")
+      .selectAll()
+      .where("id", "=", projectId)
+      .where("workspaceId", "=", workspaceId)
+      .execute();
+
+    console.log(project);
+    return project;
+  } catch (err) {
+    console.error(err);
+    return { error: "Invalid project data" };
+  }
+};
+
 export const createNewProject = async (
   workspaceId: string,
   formData: FormData

@@ -8,7 +8,7 @@ const WorkSpaceHome = ({ params }: { params: { workspaceId: string } }) => {
   const workspaceId = params.workspaceId as string;
 
   return (
-    <div>
+    <>
       <p>Dashboard of all your notes and projects</p>
       <Button>
         <Link href=".">go Back</Link>
@@ -17,7 +17,7 @@ const WorkSpaceHome = ({ params }: { params: { workspaceId: string } }) => {
       {/* Projects */}
       <Projects workspaceId={workspaceId} />
       {/* Notes */}
-    </div>
+    </>
   );
 };
 
